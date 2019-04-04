@@ -1,20 +1,21 @@
-function swap(num1, num2) {
-  const swappedArray = [num2, num1]
-  return swappedArray;
-}
-
-function bubbleSort(array) {
-  if (array.length <= 1) return array;
-  for (let i = 0; i < array.length; i++) {
-    for (let j = i + 1; j < array.length - 1; j++) {
-      if (array[i] > array[j]) {
-        const swappedArray = swap(array[i], array[j])
-        array.splice(i, 2, ...swappedArray)
+const bubbleSort = arr => {
+  let counter = 0;
+  let swaps = true;
+  while (swaps) {
+    swaps = false;
+    for (let i = 0; i < arr.length - counter; i++) {
+      if (arr[i] > arr[i + 1]) {
+        arr = swap(arr, i, i + 1);
+        swaps = true;
       }
     }
-
+    counter++;
   }
-  return array;
+  return arr;
+};
+function swap(arr, leftIndex, rightIndex) {
+  const temp1 = arr[leftIndex];
+  arr[leftIndex] = arr[rightIndex];
+  arr[rightIndex] = temp1;
+  return arr;
 }
-
-
